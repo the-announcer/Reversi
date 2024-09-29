@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameBoardView: View {
-    @StateObject private var board = GameBoard()
+    @State private var board = GameBoard()
     
     let spacing: CGFloat = 12
     let frameSize: CGFloat = 32
