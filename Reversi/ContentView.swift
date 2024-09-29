@@ -8,24 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var board = GameBoard()
-    
-    let spacing: CGFloat = 12
-    let frameSize: CGFloat = 32
+    @State private var showCoordinates: Bool = false
     
     var body: some View {
-        VStack(spacing: spacing) {
-            ForEach(0..<8, id: \.self) { row in
-                HStack(spacing: spacing) {
-                    ForEach(0..<8, id: \.self) { col in
-                        let token = board.grid[row][col]
-                        TokenView(token: token, player: token.player) {
-                            board.swap(token: token)
-                        }
-                    }
-                }
+        VStack {
+            HStack {
+                Toggle(isOn: $showCoordinates,
+                       label: {
+                            Text("Show Coordinates: ")
+                })
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding()
             }
+            GameBoardView()
+            
         }
+        
     }
 }
 
