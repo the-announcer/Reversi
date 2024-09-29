@@ -7,15 +7,16 @@
 
 import Foundation
 
-class GameBoard: ObservableObject {
+@Observable
+class GameBoard {
     let rowCount = 8
     let colCount = 8
     
-    @Published var grid = [[Token]]()
-    @Published var currentPlayer: Token.Player = .greenPlayer
+    var grid = [[Token]]()
+    var currentPlayer: Token.Player = .greenPlayer
     
-    @Published var redScore: Int = 0
-    @Published var greenScore: Int = 0
+    var redScore: Int = 0
+    var greenScore: Int = 0
     
     init() {
         reset()
@@ -39,7 +40,7 @@ class GameBoard: ObservableObject {
     }
     
     func swap(token: Token) {
-        objectWillChange.send()
+//        objectWillChange.send()
         token.player = token.player.opposite
     }
 }
