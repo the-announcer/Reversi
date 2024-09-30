@@ -13,5 +13,6 @@ struct ReversiApp: App {
         WindowGroup {
             ContentView()
         }
+        
     }
 }

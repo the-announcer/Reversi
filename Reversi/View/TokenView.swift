@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TokenView: View {
+    
+    @Environment(DebugOptions.self) var debugOptions
     @Bindable var token: Token
     
     var player: Token.Player
@@ -42,13 +44,16 @@ struct TokenView: View {
                         .scaledToFit()
                 }
                 
-                HStack(alignment: .center, spacing: 0) {
-                    Text("\(token.row)")
-                    Text(":")
-                    Text("\(token.col)")
+                /// show x:y coordinates on the token if enabled
+                if debugOptions.showCoordinates {
+                    HStack(alignment: .center, spacing: 0) {
+                        Text("\(token.row)")
+                        Text(":")
+                        Text("\(token.col)")
+                    }
+                    .foregroundStyle(.white)
+                    .bold()
                 }
-                .foregroundStyle(.white)
-                .bold()
             }
         }
         .buttonStyle(.plain)
