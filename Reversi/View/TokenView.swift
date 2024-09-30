@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TokenView: View {
-    var token: Token
+    @Bindable var token: Token
+    
     var player: Token.Player
     var tapAction: () -> Void
     

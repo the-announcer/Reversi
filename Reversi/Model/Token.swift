@@ -7,6 +7,7 @@
 
 import Foundation
 
+@Observable
 class Token {
     enum Player {
         case greenPlayer, redPlayer, noPlayer
