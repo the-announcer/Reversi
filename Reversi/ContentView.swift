@@ -8,25 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showCoordinates: Bool = false
+    
+    @State var debugOptions: DebugOptions = DebugOptions(showCoordinates: false)
     
     var body: some View {
         VStack {
-            HStack {
-                Toggle(isOn: $showCoordinates,
-                       label: {
-                            Text("Show Coordinates: ")
-                })
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding()
-            }
+            DebugOptionsView()
             GameBoardView()
-            
         }
-        
+        .environment(debugOptions)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(debugOptions: DebugOptions(showCoordinates: false))
 }
