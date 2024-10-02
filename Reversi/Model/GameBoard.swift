@@ -39,8 +39,7 @@ class GameBoard {
         }
     }
     
-    func swap(token: Token) {
-//        objectWillChange.send()
+    func flipToken(token: Token) {
         token.player = token.player.opposite
     }
 }

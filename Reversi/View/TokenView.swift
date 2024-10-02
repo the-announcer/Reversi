@@ -15,32 +15,16 @@ struct TokenView: View {
     var player: Token.Player
     var tapAction: () -> Void
     
-    let frameSize: CGFloat = 38
-    
-    var image: String {
-        switch player {
-        case .greenPlayer: return "circle.fill"
-        case .redPlayer: return "circle.fill"
-        case .noPlayer: return "x.circle.fill"
-        }
-    }
+    let frameLength: CGFloat = 38
     
     var body: some View {
         Button(action: tapAction) {
-            var color: Color {
-                switch player {
-                case .greenPlayer: return Color.green
-                case .redPlayer: return Color.red
-                case .noPlayer: return Color.gray
-                }
-            }
-            
             ZStack {
                 VStack {
-                    Image(systemName: image)
+                    Image(systemName: player.imageName)
                         .resizable()
-                        .foregroundStyle(color)
-                        .frame(width: frameSize, height: frameSize)
+                        .foregroundStyle(player.color)
+                        .frame(width: frameLength, height: frameLength)
                         .scaledToFit()
                 }
                 
@@ -51,13 +35,13 @@ struct TokenView: View {
                         Text(":")
                         Text("\(token.col)")
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
                     .bold()
                 }
             }
         }
         .buttonStyle(.plain)
-        .frame(width: frameSize, height: frameSize)
+        .frame(width: frameLength, height: frameLength)
     }
 }
 
