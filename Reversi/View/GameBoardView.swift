@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct GameBoardView: View {
-//    @Bindable private var board = GameBoard()
-    private var board = GameBoard()
+    private var board = GameBoard.shared
     
     let spacing: CGFloat = 12
     let frameSize: CGFloat = 32
@@ -21,7 +20,7 @@ struct GameBoardView: View {
                     ForEach(0..<8, id: \.self) { col in
                         let token = board.grid[row][col]
                         TokenView(token: token, player: token.player) {
-                            board.flipToken(token: token)
+                            board.tapAction(token: token)
                         }
                     }
                 }
@@ -31,5 +30,5 @@ struct GameBoardView: View {
 }
 
 #Preview {
-    GameBoardView()
+//    GameBoardView()
 }

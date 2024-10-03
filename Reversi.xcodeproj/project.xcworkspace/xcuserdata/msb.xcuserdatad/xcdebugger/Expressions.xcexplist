@@ -21,5 +21,16 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "GameBoard.tappedToken.setter:@__swiftmacro_7Reversi9GameBoardC11tappedToken18ObservationTrackedfMa_.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameBoard.tapAction(token:):GameBoard.swift">
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

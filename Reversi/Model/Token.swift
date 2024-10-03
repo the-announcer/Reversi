@@ -38,9 +38,32 @@ class Token {
         }
     }
     
+    enum CompassDirection: CaseIterable {
+        case north, south, east, west
+        
+        var rowOffset: Int {
+            switch self {
+                /// row matters for left/right (east/west)
+            case .east: return 1
+            case .west: return -1
+            default: return 0
+            }
+        }
+        
+        var colOffsset: Int {
+            switch self {
+                /// col matters for up/down (north/south)
+            case .north: return -1
+            case .south: return 1
+            default: return 0
+            }
+        }
+    }
+    
+    var player: Player
     var row: Int
     var col: Int
-    var player: Player
+    
     
     init(row: Int, col: Int, player: Player) {
         self.row = row
