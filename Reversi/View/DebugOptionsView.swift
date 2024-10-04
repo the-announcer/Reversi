@@ -16,33 +16,28 @@ struct DebugOptionsView: View {
         @Bindable var debugOptions = debugOptions
         
         VStack(alignment: .leading) {
-            HStack {
-                Toggle(isOn: $debugOptions.showCoordinates) {
-                    Text("Show Coordinates: ")
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.horizontal)
-                .padding(.bottom)
+            Toggle(isOn: $debugOptions.showCoordinates) {
+                Text("Show Coordinates: ")
             }
-            
-            if let myToken = board.tappedToken {
-                VStack(alignment: .leading) {
-                    Text("Tapped Row: \(myToken.row)")
-                    Text("Tapped Col: \(myToken.col)")
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding(.horizontal)
+
+            VStack(alignment: .leading) {
+                if let myToken = board.tappedToken {
+                    VStack(alignment: .leading) {
+                        Text("Tapped Row: \(myToken.row)")
+                        Text("Tapped Col: \(myToken.col)")
+                    }
                 }
-                .containerRelativeFrame([.horizontal]) { length, _ in
-                    return length / 3
+                else {
+                    VStack(alignment: .leading) {
+                        Text("Tapped Row: _")
+                        Text("Tapped Col: _")
+                    }
                 }
-                .border(.blue)
             }
-//            else {
-//                VStack {
-//                    Text("Tapped Row:")
-//                    Text("Tapped Col:")
-//                }
-//                .frame(maxWidth: .infinity, alignment: .leading)
-//                .padding()
-//            }
+            .padding(.horizontal)
+            .padding(.bottom)
         }
 //        .border(.red)
     }
