@@ -35,6 +35,13 @@ struct DebugOptionsView: View {
                         Text("Tapped Col: _")
                     }
                 }
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("nextRow: \(board.evaluating?.row)")
+                        Text("nextCol: \(board.evaluating?.col)")
+                    }
+                }
             }
             .padding(.horizontal)
             .padding(.bottom)

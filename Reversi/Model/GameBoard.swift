@@ -11,8 +11,10 @@ import Foundation
 class GameBoard {
     static let shared = GameBoard()
     
-    let rowCount = 8
-    let colCount = 8
+    let size = 8
+    
+    let rowCount: Int
+    let colCount: Int
     
     var grid = [[Token]]()
     var currentPlayer: Token.Player = .greenPlayer
@@ -21,8 +23,12 @@ class GameBoard {
     var greenScore: Int = 0
     
     var tappedToken: Token?
+    var evaluating: Token?
     
     private init() {
+        rowCount = self.size
+        colCount = self.size
+        
         reset()
     }
     
@@ -48,9 +54,55 @@ class GameBoard {
     func tapAction(token: Token) {
         flipToken(token: token)
         tappedToken = token
+        if let tappedToken {
+            guard checkOutOfBounds(for: tappedToken, direction: .east)
+            else { return }
+            evaluating = inspect(from: tappedToken)
+        }
     }
     
     func flipToken(token: Token) {
         token.player = token.player.opposite
     }
+    
+    func inspect(from token: Token) -> Token? {
+        /// start from the tapped token
+        /// queue the captured tokens to flip
+        var pendingCapturedTokens: [Token] = []
+        
+        var next: Token? {
+            if let token = tappedToken {
+                grid[token.row][token.col + 1]
+            } else {
+                nil
+            }
+        }
+        
+        return next
+    }
+    
+    func checkOutOfBounds(for token: Token, direction: CompassDirection) -> Bool {
+        
+        /// check row and column to ensure our next item is not out of array bounds
+        /// the CompassDirection enum provides the row,col incremental values relative to the
+        /// position of the passed in token.row and token.col
+        
+        /// check row bounds
+        guard (token.row + direction.rowOffset < self.size) &&
+                (token.row + direction.rowOffset > Int.zero)
+        else {
+            return false
+        }
+        
+        /// check column bounds
+        guard (token.col + direction.colOffset < self.size) &&
+                (token.col + direction.colOffset > Int.zero)
+        else {
+            return false
+        }
+    
+        return true
+    }
+    
 }
+
