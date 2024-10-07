@@ -89,14 +89,14 @@ class GameBoard {
         
         /// check row bounds
         guard (token.row + direction.rowOffset < self.size) &&
-                (token.row + direction.rowOffset > Int.zero)
+                (token.row + direction.rowOffset >= Int.zero)
         else {
             return false
         }
         
         /// check column bounds
         guard (token.col + direction.colOffset < self.size) &&
-                (token.col + direction.colOffset > Int.zero)
+                (token.col + direction.colOffset >= Int.zero)
         else {
             return false
         }
